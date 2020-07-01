@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Calculator</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+    </div>
+
+    <script type="text/babel">
+    var z="";
+        class Application extends React.Component {
+
+            state = {
+                result: "",
+                finalresult:"",
+                
+            }
+
+            render() {
+                 return (
+                <div>
+                    <div id="header">
+                        <h1>Calculator</h1>
+                    </div>
+                    <div id="calc">
+                        <div id="display">
+                            <p
+                            id="result"
+                            >{this.state.result}</p>
+                            <p
+                            id="finalresult"
+                            >{this.state.finalresult}</p>
+                        </div>
+                        <div id="firstrow">
+                            <button className="buttons" onClick= {() => this.clearall()}>AC</button>
+                            <button className="buttons" onClick={() => this.del()}>DEL</button>
+                            <button className="buttons" onClick={() => this.resultsdisplay('0')}>0</button>
+                            <button className="buttons" onClick={() => this.resultsdisplay('/')}>/</button>
+                        </div>
+                        <div id="secondrow">
+                            <button className="buttons" onClick={() => this.resultsdisplay('7')}>7</button>
+                            <button className="buttons" onClick={() => this.resultsdisplay('8')}>8</button>
+                            <button className="buttons" onClick={() => this.resultsdisplay('9')}>9</button>
+                            <button className="buttons" onClick={() => this.resultsdisplay('*')}>x</button>
+                        </div>
+                        <div id="thirdrow">
+                            <button className="buttons" onClick={() => this.resultsdisplay('4')}>4</button>
+                            <button className="buttons" onClick={() => this.resultsdisplay('5')}>5</button>
+                            <button className="buttons" onClick={() => this.resultsdisplay('6')}>6</button>
+                            <button className="buttons" onClick={() => this.resultsdisplay('-')}>-</button>
+                        </div>
+                        <div id="fourthrow">
+                            <button className="buttons" onClick={() => this.resultsdisplay('1')}>1</button>
+                            <button className="buttons" onClick={() => this.resultsdisplay('2')}>2</button>
+                            <button className="buttons" onClick={() => this.resultsdisplay('3')}>3</button>
+                            <button className="buttons" onClick={() => this.resultsdisplay('+')}>+</button>
+                        </div>
+                        <div id="fifthrow">
+                            <button className="buttons" onClick={() => this.resultsdisplay('(')}>(</button>
+                            <button className="buttons" onClick={() => this.resultsdisplay(')')}>)</button>
+                            <button className="buttons" onClick={() => this.resultsdisplay('.')}>.</button>
+                            <button className="buttons" onClick={() => this.finalresult()}>=</button>
+                        </div>
+                    </div>
+                    <div id="footer">
+                        <h3> Made with love by Rounak!</h3>
+                    </div>
+                </div>
+                       
+                );
+            }
+               
+                        
+
+
+          
+            resultsdisplay(v) {
+                z+=v
+                 this.setState({
+                    result: z
+                })
+            }
+
+            clearall() {
+                z="";
+            this.setState({
+                    result: "",
+                    finalresult:"",
+                })
+            }
+
+            del() {
+            var s = this.state.result;
+            z = s.substring(0, s.length - 1);
+             this.setState({
+                    result: z,
+                })
+            }
+
+            finalresult() {
+            var q = this.state.result;
+            var w = eval(q);
+            this.setState({
+                finalresult:w,
+            })
+            }
+        }
+        ReactDOM.render(<Application/>, document.getElementById("app"));
+    </script>
+</body>
+
+</html>
